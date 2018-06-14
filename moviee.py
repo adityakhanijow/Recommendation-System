@@ -14,4 +14,10 @@ similarMovies=similarMovies.dropna()
 df=pd.DataFrame(similarMovies)
 df.head(10)
 similarMovies.sort_values(ascending=False) # redency coz many values are 1 resolved furthur
-
+moviestats=ratings.groupby('title').agg({'rating':[np.size,np.mean]})
+moviestats.head()
+popularMovies=moviestats['rating']['size']>=100
+moviestats[popularMovies].sort_values([('rating','mean')],ascending=False)[:15]
+df=moviestats[popularMovies].join(pd.DataFrame(similarMovies,columns=['similarity']))
+df.head()
+df.sort_values(['similarity'],ascending=False)[0:15]
