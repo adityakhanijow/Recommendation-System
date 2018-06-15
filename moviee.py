@@ -40,8 +40,8 @@ myRatings
 simCandidates=pd.Series()
 for i in range(0, len(myRatings.index));
 	print "Adding similarities for" + myRatings.index[i]+ "..."
-	sims= corrMatrix(myRatings.index(i).dropna())
-	sims=sims.map(lambda x: x* myRatings(i))
+	sims= corrMatrix[myRatings.index[i]].dropna()
+	sims=sims.map(lambda x: x* myRatings[i])
 	simCandidates=simCandidates.append(sims)
 print "sorting..."
 simCandidates.sort_values(inplace=True, ascending=False)
